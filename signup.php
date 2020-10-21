@@ -40,14 +40,19 @@ if (isset($_POST['submit'])) {
         echo "Password should match";
     } else {
         $password = password_hash($_REQUEST['password'], PASSWORD_DEFAULT);
-        $sql = "INSERT INTO form (email, password, name) VALUES ('" . $_REQUEST['email'] . "', '" . $password . "', '" . $_REQUEST['name'] . "');";
+        $sql = "INSERT INTO form (email, password, name) VALUES (?, ?, ?);";
+
+        $email = $_REQUEST['email'];
+        $pass = $password;
+        $name = $_REQUEST['name'];
 
         if (check($conn)) {
             echo "user already exists";
         } else {
 
-            $sus = mysqli_query($conn, $sql);
-            if ($sus === TRUE) {
+            $sus = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($sus ,"sss", $email, $pass, $name);
+            if (mysqli_stmt_execute($sus)) {
                 echo "Successfully SignedUp";
             }else{
                 echo "something went wrong";
