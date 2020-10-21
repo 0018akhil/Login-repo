@@ -1,3 +1,9 @@
+<?php
+session_start();
+$username = $_SESSION['username'];
+echo "<h1>Hello, " . $username . ".</h1>";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,14 +11,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <style>
-        h1, h3{
+        body{
             text-align: center;
-            
+        }
+        h1{
+            font-size: 100px;
+            text-transform: capitalize;
         }
     </style>
 </head>
 <body>
-    <h1>Hello</h1>
-    <h3>You are in your portal.</h3>
+    <p>Have a nice day.</p>
 </body>
 </html>
