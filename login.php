@@ -51,6 +51,11 @@ if (isset($_POST['submit'])) {
         if (check($conn)) {
 
             if (pass($conn)) {
+                $stmt = "SELECT name FROM form WHERE email ='" . $_REQUEST['email']. "';";
+                $res = mysqli_query($conn, $stmt);
+                $out = mysqli_fetch_assoc($res);
+                session_start();
+                $_SESSION['username'] = $out['name'];
                 header("Location:home.php");
             } else {
                 echo "Password is wrong";
