@@ -1,2 +1,4 @@
-# Login-repo
-My first PHP Login system with Mysql data base at backend
+# Basic Login System
+
+The softwares used is HTML, CSS, PHP and Mysql.
+
