@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 if (!isset($_SESSION['username'])) {
     $db_server = "localhost";
     $db_username = "root";
@@ -54,7 +56,6 @@ if (!isset($_SESSION['username'])) {
                     $stmt = "SELECT name FROM form WHERE email ='" . $_REQUEST['email'] . "';";
                     $res = mysqli_query($conn, $stmt);
                     $out = mysqli_fetch_assoc($res);
-                    session_start();
                     $_SESSION['username'] = $out['name'];
                     echo "<script>location.href='./home.php'</script>";
                 } else {

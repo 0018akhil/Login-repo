@@ -1,13 +1,21 @@
 <?php
 session_start();
-$username = $_SESSION['username'];
+
+if(isset($_SESSION['username'])){
+    $username = $_SESSION['username'];
+}else{
+    echo "<script> location.href='login.php' </script>";
+}
+
+
 echo "<h1>Hello, " . $username . ".</h1>";
 
-if(isset($_REQUEST['logout'])){
+if(isset($_REQUEST['submit'])){
     session_unset();
     session_destroy();
     echo "<script> location.href='login.php' </script>";
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +32,7 @@ if(isset($_REQUEST['logout'])){
             font-size: 100px;
             text-transform: capitalize;
         }
-        input{
+        button{
             height: 50px;
             width: 100px;
             background-color: lightskyblue;
@@ -33,13 +41,15 @@ if(isset($_REQUEST['logout'])){
             border-radius: 10px;
             font-family: monospace;
         }
-        input:hover{
+        button:hover{
             cursor: pointer;
         }
     </style>
 </head>
 <body>
     <p>Have a nice day.</p>
-    <input type="button" name="logout" id="logout" value="logout">
+    <form action="">
+        <button type="submit" name="submit" value="20">LOGOUT</button>
+    </form>
 </body>
 </html>
